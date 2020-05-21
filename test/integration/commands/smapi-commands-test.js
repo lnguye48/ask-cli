@@ -988,6 +988,20 @@ parallel('smapi command test', () => {
         expect(result).include('Command executed successfully!');
     });
 
+    it('| should publish skill', async () => {
+        const args = [subCmd, 'publish-skill', '-s', skillId, '--publishes-at', '2019-04-12T23:20:50.52Z'];
+        addCoveredCommand(args);
+        const result = await run(cmd, args, options);
+        expect(result).be.an('object');
+    });
+
+    it('| should get latest publication', async () => {
+        const args = [subCmd, 'get-latest-publication', '-s', skillId];
+        addCoveredCommand(args);
+        const result = await run(cmd, args, options);
+        expect(result).be.an('object');
+    });
+
     after(() => {
         mockSmapiServer.kill();
         mockLwaServer.kill();
