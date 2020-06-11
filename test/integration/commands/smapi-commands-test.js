@@ -136,7 +136,7 @@ parallel('smapi command test', () => {
         const args = [subCmd, 'create-skill-for-vendor', '--manifest', JSON.stringify(skillManifest)];
         addCoveredCommand(args);
         const result = await run(cmd, args, options);
-        expect(result).be.an('object');
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get skill status', async () => {
@@ -179,10 +179,9 @@ parallel('smapi command test', () => {
     it('| should create catalog upload', async () => {
         const args = [subCmd, 'create-catalog-upload', '-c', catalogId, '--catalog-upload-request-body', JSON.stringify(catalogUploadBody)];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
-
 
     it('| should display catalog list for skill', async () => {
         const args = [subCmd, 'list-catalogs-for-skill', '-s', skillId, '--max-results', 1];
@@ -391,7 +390,6 @@ parallel('smapi command test', () => {
         expect(result).be.an('object');
     });
 
-
     it('| should get content upload by id', async () => {
         const args = [subCmd, 'get-content-upload-by-id', '-c', catalogId, '--upload-id', uploadId];
         addCoveredCommand(args);
@@ -504,15 +502,15 @@ parallel('smapi command test', () => {
     it('| should start beta test', async () => {
         const args = [subCmd, 'start-beta-test', '-s', skillId];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should end beta test', async () => {
         const args = [subCmd, 'end-beta-test', '-s', skillId];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get certifications list', async () => {
@@ -575,8 +573,8 @@ parallel('smapi command test', () => {
         const args = [subCmd, 'set-interaction-model', '-s', skillId, '-g',
             stage, '-l', locale, '--interaction-model', JSON.stringify(interactionModel)];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should list interaction model catalogs', async () => {
@@ -624,8 +622,8 @@ parallel('smapi command test', () => {
     it('| should create interaction model catalog version', async () => {
         const args = [subCmd, 'create-interaction-model-catalog-version', '-c', catalogId, '--description', 'someDescription'];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get interaction model catalog version', async () => {
@@ -715,8 +713,8 @@ parallel('smapi command test', () => {
     it('| should create interaction model slot type version', async () => {
         const args = [subCmd, 'create-interaction-model-slot-type-version', '--slot-type-id', slotTypeId, '--slot-type', slotType];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get interaction model slot type version', async () => {
@@ -752,8 +750,8 @@ parallel('smapi command test', () => {
     it('| should update skill manifest', async () => {
         const args = [subCmd, 'update-skill-manifest', '-s', skillId, '-g', stage, '--manifest', JSON.stringify(skillManifest)];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get skill metrics', async () => {
@@ -830,8 +828,8 @@ parallel('smapi command test', () => {
     it('| should submit skill for certification', async () => {
         const args = [subCmd, 'submit-skill-for-certification', '-s', skillId, '--publication-method', 'MANUAL_PUBLISHING'];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should withdraw skill from certification', async () => {
@@ -844,8 +842,8 @@ parallel('smapi command test', () => {
     it('| should create export request for skill', async () => {
         const args = [subCmd, 'create-export-request-for-skill', '-s', skillId, '-g', stage];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get status of export request', async () => {
@@ -858,15 +856,15 @@ parallel('smapi command test', () => {
     it('| should create skill package', async () => {
         const args = [subCmd, 'create-skill-package', '--location', location];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should import skill package', async () => {
         const args = [subCmd, 'import-skill-package', '--location', location, '-s', skillId];
         addCoveredCommand(args);
-        const result = await run(cmd, args, { ...options, parse: false });
-        expect(result).include('Command executed successfully!');
+        const result = await run(cmd, args, options);
+        expect(result.locationHeaderValue).be.a('string');
     });
 
     it('| should get import status', async () => {
