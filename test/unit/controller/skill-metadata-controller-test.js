@@ -57,14 +57,14 @@ describe('Controller test - skill metadata controller test', () => {
             sinon.restore();
         });
 
-        it('| skill package src is empty in ask-resources.json', (done) => {
+        it('| skill package src does not exist', (done) => {
             // setup
             ResourcesConfig.getInstance().setSkillMetaSrc(TEST_PROFILE, null);
             // call
             skillMetaController.deploySkillPackage(TEST_VENDOR_ID, TEST_IGNORE_HASH, (err, res) => {
                 // verify
                 expect(res).equal(undefined);
-                expect(err).equal('Skill package src is not found in ask-resources.json.');
+                expect(err).equal('File ./skill-package does not exist.');
                 done();
             });
         });
